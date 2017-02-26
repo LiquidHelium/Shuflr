@@ -1,16 +1,19 @@
 {
   "scripts": {
-    "start": "babel-node index.js",
+    "start": "babel-node src/index.js",
     "test": "jest",
     "typecheck": "flow check",
     "flow": "flow",
+    "flowstart": "flow start",
     "flowstop": "flow stop"
   },
   "dependencies": {
     "babel-jest": "^19.0.0",
     "babel-polyfill": "^6.23.0",
     "koa": "^2.0.1",
-    "koa-router": "^5.4.0"
+    "koa-router": "^5.4.0",
+    "ramda": "^0.23.0",
+    "sequelize": "^3.30.2"
   },
   "devDependencies": {
     "babel-cli": "^6.23.0",
