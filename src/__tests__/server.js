@@ -17,5 +17,11 @@ describe('Server', () => {
       .get('/notDefined')
       .expect(404);
   });
+
+  test('Serve Static Files', async () => {
+    return supertest(serverInstance)
+      .get('/static/script.js')
+      .expect(200);
+  });
 });
 
