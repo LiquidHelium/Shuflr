@@ -1,34 +1,26 @@
 {
   "scripts": {
     "start": "babel-node src/index.js",
-    "test": "jest",
-    "typecheck": "flow check",
-    "flow": "flow",
-    "flowstart": "flow start",
-    "flowstop": "flow stop"
+    "test": "jest"
   },
   "dependencies": {
-    "babel-jest": "^19.0.0",
     "babel-polyfill": "^6.23.0",
+    "dotenv": "^4.0.0",
     "koa": "^2.0.1",
-    "koa-router": "^5.4.0",
+    "koa-router": "^7.1.1",
     "ramda": "^0.23.0",
     "sequelize": "^3.30.2"
   },
   "devDependencies": {
     "babel-cli": "^6.23.0",
     "babel-core": "^6.23.1",
-    "babel-plugin-transform-flow-strip-types": "^6.22.0",
     "babel-preset-latest": "^6.22.0",
-    "flow-bin": "^0.40.0",
-    "jest": "^19.0.2"
+    "jest": "^19.0.2",
+    "supertest": "^3.0.0"
   },
   "babel": {
     "presets": [
       "latest"
-    ],
-    "plugins": [
-      "transform-flow-strip-types"
     ]
   }
 }
