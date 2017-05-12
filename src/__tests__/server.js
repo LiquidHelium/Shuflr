@@ -3,7 +3,7 @@ import supertest from 'supertest';
 
 describe('Server', () => {
   let serverInstance;
-  beforeAll(() => serverInstance = server());
+  beforeAll(() => serverInstance = server(true));
   afterAll(async () => await serverInstance.close());
 
   test('Status 200 On Index', async () => {

@@ -1,6 +1,7 @@
 import Koa from 'koa';
 import Router from 'koa-router';
-import Static from 'koa-static-server';
+import Static from 'koa-static';
+import Mount from 'koa-mount';
 import bluebird from 'bluebird';
 import fs from 'fs';
 import path from 'path';
@@ -8,7 +9,7 @@ import ejs from 'ejs';
 
 const readFile = bluebird.promisify(fs.readFile);
 
-export default () => {
+export default (quiet) => {
   const port = 3000;
 
   const app = new Koa();
@@ -22,14 +23,15 @@ export default () => {
   });
 
   const staticPath = path.join(__dirname, '..', 'static');
-  const staticServer = Static({rootDir: staticPath, rootPath: '/static'});
-  app.use(staticServer);
+  const staticServer = Static(staticPath);
+  app.use(Mount('/static', staticServer));
 
   app.use(router.routes());
   app.use(router.allowedMethods());
 
   return app.listen(port, () => {
-    console.log('App started on port ' + port);
+    if (!quiet)
+      console.log('App started on port ' + port);
   });
 };
 
