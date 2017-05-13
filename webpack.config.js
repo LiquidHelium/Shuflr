@@ -27,6 +27,6 @@ module.exports = {
       query: { presets: ['env', 'react'] },
     }],
   },
-  plugins: process.env.NODE_ENV === "production" ? productionPlugins : [],
+  plugins: process.env.NODE_ENV === 'production' ? productionPlugins : [],
 };
 
