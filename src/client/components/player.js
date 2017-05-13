@@ -2,19 +2,12 @@ import React from 'react';
 import YouTube from 'react-youtube';
 import R from 'ramda';
 
-const videos = [
-  '7QLSRMoKKS0',
-  'TV7sbaffuNo',
-  'otIabO9CL_I',
-  '5dqBhFI8f7w',
-];
-
 const getRandomFromList = (list) => {
   const index = Math.floor(Math.random() * list.length);
   return list[index];
 };
 
-class Video extends React.Component {
+class Player extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -53,30 +46,4 @@ class Video extends React.Component {
   }
 }
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      videos,
-    };
-
-    this.doAction = this.doAction.bind(this);
-  }
-
-  doAction() {
-    this.setState({
-      videos: ['PcmAg6-smKQ', ...this.state.videos],
-    });
-  }
-
-  render() {
-    return (
-      <div>
-        <Video videos={this.state.videos} />
-        <a role="button" onClick={this.doAction}>Hello World!</a>
-      </div>
-    );
-  }
-}
-
-export default App;
+export default Player;

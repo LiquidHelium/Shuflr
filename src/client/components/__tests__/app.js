@@ -8,4 +8,3 @@ describe('Base React App', () => {
     expect(wrapper.html().length).toBeGreaterThan(0);
   });
 });
-
