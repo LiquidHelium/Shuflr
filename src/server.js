@@ -30,8 +30,9 @@ export default (quiet) => {
   app.use(router.allowedMethods());
 
   return app.listen(port, () => {
-    if (!quiet)
-      console.log('App started on port ' + port);
+    if (!quiet) {
+      console.log(`App started on port ${port}`);
+    }
   });
 };
 

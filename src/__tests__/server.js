@@ -1,10 +1,10 @@
-import server from '../server';
 import supertest from 'supertest';
+import server from '../server';
 
 describe('Server', () => {
   let serverInstance;
   beforeAll(() => serverInstance = server(true));
-  afterAll(async () => await serverInstance.close());
+  afterAll(() => serverInstance.close());
 
   test('Status 200 On Index', async () => {
     return supertest(serverInstance)

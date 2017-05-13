@@ -1,14 +1,13 @@
 const webpack = require('webpack');
 const dotenv = require('dotenv');
-const path = require('path');
 
 dotenv.config();
 
 const productionPlugins = [
   new webpack.DefinePlugin({
-    'process.env': { 'NODE_ENV': JSON.stringify('production') }
+    'process.env': { NODE_ENV: JSON.stringify('production') },
   }),
-  new webpack.optimize.UglifyJsPlugin()
+  new webpack.optimize.UglifyJsPlugin(),
 ];
 
 module.exports = {
@@ -17,7 +16,7 @@ module.exports = {
   },
   output: {
     publicPath: '/static/',
-    filename: 'static/script.js'
+    filename: 'static/script.js',
   },
   devtool: 'source-map',
   module: {
@@ -25,9 +24,9 @@ module.exports = {
       test: /\.js$/,
       exclude: /(node_modules)/,
       loader: 'babel-loader',
-      query: { presets: ['env', 'react'] }
-    }]
+      query: { presets: ['env', 'react'] },
+    }],
   },
-  plugins: process.env.NODE_ENV == "production" ? productionPlugins : [],
+  plugins: process.env.NODE_ENV === "production" ? productionPlugins : [],
 };
 
