@@ -21,7 +21,6 @@ jobs:
 
       - run: sudo yarn global add greenkeeper-lockfile@1
 
-      - run: greenkeeper-lockfile-update
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -32,6 +31,8 @@ jobs:
 
       - run: yarn install
 
+      - run: greenkeeper-lockfile-update
+      
       - save_cache:
           paths:
             - node_modules
