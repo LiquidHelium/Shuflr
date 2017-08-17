@@ -19,7 +19,7 @@ jobs:
     steps:
       - checkout
 
-      - run: yarn global add greenkeeper-lockfile@1
+      - run: sudo yarn global add greenkeeper-lockfile@1
 
       - run: greenkeeper-lockfile-update
       # Download and cache dependencies
