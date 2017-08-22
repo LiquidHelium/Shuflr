@@ -22,7 +22,7 @@ describe('Server', () => {
 
   test('Serve Static Files', async () => {
     return supertest(serverInstance)
-      .get('/static/script.js')
+      .get('/static/index.html')
       .expect(200);
   });
 });

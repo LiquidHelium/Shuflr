@@ -12,12 +12,12 @@ const productionPlugins = [
 
 module.exports = {
   entry: {
-    app: ['babel-polyfill', './src/client/index.tsx'],
+    app: ['./src/client/index.tsx'],
   },
 
   output: {
     publicPath: '/static/',
-    filename: 'static/script.js',
+    filename: 'build/static/script.js',
   },
 
   resolve: {
@@ -32,13 +32,6 @@ module.exports = {
       exclude: /(node_modules)/,
       loader: 'ts-loader'
     }],
-  },
-
-  devServer: {
-    compress: true,
-    port: 9000,
-    color: true,
-
   },
 
   plugins: process.env.NODE_ENV === 'production' ? productionPlugins : [],
