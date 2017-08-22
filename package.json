@@ -5,7 +5,8 @@
     "start": "ts-node src/index.ts",
     "build": "webpack",
     "test": "jest",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "postinstall": "webpack"
   },
   "dependencies": {
     "@types/bluebird": "^3.5.8",
