@@ -1,15 +1,16 @@
-import Koa from 'koa';
-import Router from 'koa-router';
-import Static from 'koa-static';
-import Mount from 'koa-mount';
-import bluebird from 'bluebird';
-import fs from 'fs';
-import path from 'path';
-import ejs from 'ejs';
+import * as Koa from 'koa';
+import * as Router from 'koa-router';
+import * as Static from 'koa-static';
+import * as Mount from 'koa-mount';
+import * as bluebird from 'bluebird';
+import * as fs from 'fs';
+import * as path from 'path';
+import * as ejs from 'ejs';
 
-const readFile = bluebird.promisify(fs.readFile);
 
-export default (quiet) => {
+const readFile: any = bluebird.promisify(fs.readFile);
+
+export default (quiet: boolean) => {
   const port = 3000;
 
   const app = new Koa();

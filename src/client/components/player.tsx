@@ -1,14 +1,18 @@
-import React from 'react';
+import * as React from 'react';
 import YouTube from 'react-youtube';
-import R from 'ramda';
+import * as R from 'ramda';
 
-const getRandomFromList = (list) => {
+const getRandomFromList = (list: Array<string>) => {
   const index = Math.floor(Math.random() * list.length);
   return list[index];
 };
 
-class Player extends React.Component {
-  constructor(props) {
+export interface PlayerProps {
+  videos: Array<string>
+}
+
+class Player extends React.Component<PlayerProps, any> {
+  constructor(props: PlayerProps) {
     super(props);
     this.state = {
       player: null,
@@ -19,7 +23,7 @@ class Player extends React.Component {
     this.doAction = this.doAction.bind(this);
   }
 
-  onReady(event) {
+  onReady(event: React.SyntheticEvent<any>) {
     this.setState({
       player: event.target,
     });

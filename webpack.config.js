@@ -12,21 +12,35 @@ const productionPlugins = [
 
 module.exports = {
   entry: {
-    ifsl: ['babel-polyfill', './src/client/index.js'],
+    app: ['babel-polyfill', './src/client/index.tsx'],
   },
+
   output: {
     publicPath: '/static/',
     filename: 'static/script.js',
   },
+
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js']
+  },
+
   devtool: 'source-map',
+  
   module: {
     loaders: [{
-      test: /\.js$/,
+      test: /\.tsx?$/,
       exclude: /(node_modules)/,
-      loader: 'babel-loader',
-      query: { presets: ['env', 'react'] },
+      loader: 'ts-loader'
     }],
   },
+
+  devServer: {
+    compress: true,
+    port: 9000,
+    color: true,
+
+  },
+
   plugins: process.env.NODE_ENV === 'production' ? productionPlugins : [],
 };
 

@@ -1,5 +1,4 @@
-import React from 'react';
-
+import * as React from 'react';
 import Player from './player';
 
 const videos = [
@@ -9,8 +8,10 @@ const videos = [
   '5dqBhFI8f7w',
 ];
 
-class App extends React.Component {
-  constructor(props) {
+export interface AppProps {};
+
+class App extends React.Component<AppProps, any> {
+  constructor(props: AppProps) {
     super(props);
     this.state = {
       videos,

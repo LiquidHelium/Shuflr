@@ -2,12 +2,21 @@
   "name": "shuflr",
   "version": "0.0.1",
   "scripts": {
-    "start": "babel-node src/index.js",
+    "start": "ts-node src/index.ts",
     "build": "webpack",
     "test": "jest",
     "lint": "eslint src"
   },
   "dependencies": {
+    "@types/bluebird": "^3.5.8",
+    "@types/ejs": "^2.3.33",
+    "@types/koa": "^2.0.39",
+    "@types/koa-mount": "^2.0.18",
+    "@types/koa-router": "^7.0.22",
+    "@types/koa-static": "^3.0.0",
+    "@types/ramda": "^0.24.7",
+    "@types/react": "^16.0.2",
+    "@types/react-dom": "^15.5.3",
     "babel-polyfill": "^6.23.0",
     "bluebird": "^3.5.0",
     "dotenv": "^4.0.0",
@@ -24,6 +33,9 @@
     "redux": "^3.6.0"
   },
   "devDependencies": {
+    "@types/enzyme": "^2.8.6",
+    "@types/jest": "^20.0.7",
+    "@types/supertest": "^2.0.2",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
     "babel-eslint": "^7.2.3",
@@ -39,12 +51,31 @@
     "jest": "^20.0.1",
     "react-test-renderer": "^15.5.4",
     "supertest": "^3.0.0",
-    "webpack": "^3.5.5"
+    "ts-jest": "^20.0.10",
+    "ts-loader": "^2.3.3",
+    "ts-node": "^3.3.0",
+    "typescript": "^2.4.2",
+    "webpack": "^3.5.5",
+    "webpack-dev-server": "^2.7.1"
   },
-  "babel": {
-    "presets": [
-      "env",
-      "react"
-    ]
+  "jest": {
+    "roots": [
+      "<rootDir>/src/"
+    ],
+    "transform": {
+      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json"
+    ],
+    "globals": {
+      "ts-jest": {
+        "skipBabel": true
+      }
+    }
   }
 }

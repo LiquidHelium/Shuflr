@@ -1,4 +1,3 @@
 import server from './server';
 
-server();
-
+server(false);

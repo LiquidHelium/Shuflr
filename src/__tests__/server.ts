@@ -1,8 +1,10 @@
-import supertest from 'supertest';
+import * as supertest from 'supertest';
 import server from '../server';
 
+import {Server} from 'http';
+
 describe('Server', () => {
-  let serverInstance;
+  let serverInstance: Server;
   beforeAll(() => serverInstance = server(true));
   afterAll(() => serverInstance.close());
 
@@ -19,9 +21,9 @@ describe('Server', () => {
   });
 
   test('Serve Static Files', async () => {
-  //  return supertest(serverInstance)
-   //   .get('/static/script.js')
-    //  .expect(200);
+    return supertest(serverInstance)
+      .get('/static/script.js')
+      .expect(200);
   });
 });
 
