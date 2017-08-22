@@ -1,7 +1,4 @@
 const webpack = require('webpack');
-const dotenv = require('dotenv');
-
-dotenv.config();
 
 const productionPlugins = [
   new webpack.DefinePlugin({
