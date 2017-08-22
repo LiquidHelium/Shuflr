@@ -11,7 +11,7 @@ import * as ejs from 'ejs';
 const readFile: any = bluebird.promisify(fs.readFile);
 
 export default (quiet: boolean) => {
-  const port = 3000;
+  const port = process.env.PORT || 3000;
 
   const app = new Koa();
   const router = new Router();
