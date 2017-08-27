@@ -1,6 +1,7 @@
 import * as React from 'react';
 import YouTube from 'react-youtube';
 import * as R from 'ramda';
+import { connect } from 'react-redux';
 
 const getRandomFromList = (list: string[]) => {
   const index = Math.floor(Math.random() * list.length);
@@ -9,6 +10,7 @@ const getRandomFromList = (list: string[]) => {
 
 export interface PlayerProps {
   videos: string[];
+  dispatch(f: any): any;
 }
 
 class Player extends React.Component<PlayerProps, any> {
@@ -26,6 +28,17 @@ class Player extends React.Component<PlayerProps, any> {
   onReady(event: React.SyntheticEvent<any>) {
     this.setState({
       player: event.target,
+    }); 
+
+    this.props.dispatch({
+      type: 'SETUP_PLAYER',
+      payload: {
+        player: this.state.player,
+      },
+    });
+
+    this.props.dispatch({
+      type: 'START_PLAYER',
     });
   }
 
@@ -50,4 +63,4 @@ class Player extends React.Component<PlayerProps, any> {
   }
 }
 
-export default Player;
+export default connect()(Player);
