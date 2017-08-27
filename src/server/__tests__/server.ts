@@ -1,7 +1,7 @@
 import * as supertest from 'supertest';
 import server from '../server';
 
-import {Server} from 'http';
+import { Server } from 'http';
 
 describe('Server', () => {
   let serverInstance: Server;

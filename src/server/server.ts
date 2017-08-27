@@ -7,6 +7,8 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as ejs from 'ejs';
 
+import { getVideoInfo } from './apis/Youtube';
+
 
 const readFile: any = bluebird.promisify(fs.readFile);
 
@@ -21,6 +23,16 @@ export default (quiet: boolean) => {
     const template = await readFile(templatePath, 'utf-8');
     const html = ejs.render(template);
     ctx.body = html;
+  });
+
+  router.get('/youtube/:id', async (ctx) => {
+    try {
+      const info = await getVideoInfo(ctx.params.id);
+      ctx.body = info;
+    } catch (err) {
+      ctx.status = 500;
+      ctx.body = err.message;
+    }
   });
 
   const staticPath = path.join(__dirname, '..', 'static');

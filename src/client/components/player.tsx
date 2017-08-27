@@ -2,13 +2,13 @@ import * as React from 'react';
 import YouTube from 'react-youtube';
 import * as R from 'ramda';
 
-const getRandomFromList = (list: Array<string>) => {
+const getRandomFromList = (list: string[]) => {
   const index = Math.floor(Math.random() * list.length);
   return list[index];
 };
 
 export interface PlayerProps {
-  videos: Array<string>
+  videos: string[];
 }
 
 class Player extends React.Component<PlayerProps, any> {
