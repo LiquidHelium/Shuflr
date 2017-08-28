@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { createStore, compose, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import reducer from '../reducers';
-import saga from '../sagas';
+import reducer from '../../reducers';
+import saga from '../../sagas';
 import createSagaMiddleware from 'redux-saga';
-import Page from './Page';
+import Page from '../Page';
+
+const style = require('./style.scss');
 
 const reduxDevTool = (window as any)['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'];
 const sagaMiddleware = createSagaMiddleware();
