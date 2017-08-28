@@ -1,0 +1,11 @@
+:global {
+  body, html {
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+}

@@ -1,11 +1,4 @@
-import { ActionKeys } from './index';
-
-interface SetVideosAction {
-  type: ActionKeys.SET_VIDEOS;
-  payload: {
-    videos: YoutubeVideoInfo[];
-  };
-}
+import { ActionKeys, SetVideosAction } from './types';
 
 export const setVideos = (videos: YoutubeVideoInfo[]): SetVideosAction => {
   return {
