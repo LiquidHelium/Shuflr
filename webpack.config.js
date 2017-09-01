@@ -23,7 +23,13 @@ module.exports = {
 
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.scss', '.css'],
+    alias: {
+      colors: 'empty',
+      'colors/safe': 'empty'
+    }
   },
+
+  node: { fs: 'empty' },
 
   devtool: 'source-map',
   
