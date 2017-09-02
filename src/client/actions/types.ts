@@ -1,8 +1,11 @@
 export enum ActionKeys {
     OTHER_ACTION = 'OTHER_ACTION',
-    SET_VIDEOS = 'SET_VIDEOS',
+    LOAD_PLAYLIST = 'LOAD_PLAYLIST',
+    SET_PLAYLIST = 'SET_PLAYLIST',
     SET_VIDEO = 'SET_VIDEO',
     PLAY_VIDEO = 'PLAY_VIDEO',
+    PAUSE_VIDEO = 'PAUSE_VIDEO',
+    LOAD_NEXT_VIDEO = 'LOAD_NEXT_VIDEO',
     SETUP_PLAYER = 'SETUP_PLAYER',
     TEARDOWN_PLAYER = 'TEARDOWN_PLAYER',
 }
@@ -11,9 +14,17 @@ export interface OtherAction {
   type: ActionKeys.OTHER_ACTION;
 }
 
-export interface SetVideosAction {
-  type: ActionKeys.SET_VIDEOS;
+export interface LoadPlaylistAction {
+  type: ActionKeys.LOAD_PLAYLIST;
   payload: {
+    id: string;
+  };
+}
+
+export interface SetPlaylistAction {
+  type: ActionKeys.SET_PLAYLIST;
+  payload: {
+    id: string;
     videos: YoutubeVideoInfo[];
   };
 }
@@ -29,6 +40,14 @@ export interface PlayVideoAction {
   type: ActionKeys.PLAY_VIDEO;
 }
 
+export interface PauseVideoAction {
+  type: ActionKeys.PAUSE_VIDEO;
+}
+
+export interface LoadNextVideoAction {
+  type: ActionKeys.LOAD_NEXT_VIDEO;
+}
+
 export interface SetupPlayerAction {
   type: ActionKeys.SETUP_PLAYER;
   payload: {
@@ -42,8 +61,11 @@ export interface TeardownPlayerAction {
 
 export type ActionType =
   OtherAction |
-  SetVideosAction |
+  LoadPlaylistAction |
+  SetPlaylistAction |
   SetupPlayerAction |
   TeardownPlayerAction |
   PlayVideoAction |
+  PauseVideoAction |
+  LoadNextVideoAction |
   SetVideoAction;

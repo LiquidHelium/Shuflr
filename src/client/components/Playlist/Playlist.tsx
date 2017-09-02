@@ -1,9 +1,9 @@
 import * as React from 'react';
-import Player from '../player';
+import YoutubePlayer from '../YoutubePlayer';
 import VideoInfo from '../VideoInfo';
 import { getVideoInfo } from '../../api/youtube';
 import { connect } from 'react-redux';
-import { setVideos, setVideo } from '../../actions';
+import { setVideo } from '../../actions';
 import { StoreState } from '../../reducers';
 
 const style = require('./style.scss');
@@ -16,20 +16,13 @@ const videos = [
   '5dqBhFI8f7w',
 ];
 
-export interface PageProps {
+export interface PlaylistProps {
   videos: YoutubeVideoInfo[];
   currentlyPlaying: string | null;
-  setVideos(videos: YoutubeVideoInfo[]): any;
   setVideo(video: string): any;
 }
 
-class Page extends React.Component<PageProps, {}> {
-  async componentDidMount() {
-    const downloadInfo = videos.map((id: any) => getVideoInfo(id));
-    const videoInfo = await Promise.all(downloadInfo);
-    this.props.setVideos(videoInfo);
-  }
-
+class Playlist extends React.Component<PlaylistProps, {}> {
   render() {
     const videoInfos = 
       this.props.videos.map((info: any) => (
@@ -48,7 +41,7 @@ class Page extends React.Component<PageProps, {}> {
           {videoInfos}
         </div>
         <div className={style.player}>
-          <Player />
+          <YoutubePlayer />
         </div>
       </div>
     );
@@ -57,10 +50,10 @@ class Page extends React.Component<PageProps, {}> {
 
 const connectPage = connect(
     (state: StoreState) => ({
-      videos: state.videos.videos,
-      currentlyPlaying: state.player.currentlyPlaying,
+      videos: state.playlist.videos,
+      currentlyPlaying: state.player.videoID,
     }),
-    { setVideos, setVideo },
+    { setVideo },
 );
 
-export default connectPage(Page);
+export default connectPage(Playlist);

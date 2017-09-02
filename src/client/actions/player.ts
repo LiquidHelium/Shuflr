@@ -4,6 +4,8 @@ import {
     SetVideoAction,
     PlayVideoAction,
     TeardownPlayerAction,
+    PauseVideoAction,
+    LoadNextVideoAction,
 } from './types';
 
 export const setupPlayer = (player: any): SetupPlayerAction => {
@@ -27,6 +29,18 @@ export const setVideo = (id: string): SetVideoAction => {
 export const playVideo = (): PlayVideoAction => {
   return {
     type: ActionKeys.PLAY_VIDEO,
+  };
+};
+
+export const pauseVideo = (): PauseVideoAction => {
+  return {
+    type: ActionKeys.PAUSE_VIDEO,
+  };
+};
+
+export const loadNextVideo = (): LoadNextVideoAction => {
+  return {
+    type: ActionKeys.LOAD_NEXT_VIDEO,
   };
 };
 

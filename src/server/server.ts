@@ -29,6 +29,13 @@ const server = (connection: Connection, quiet: boolean) => {
     ctx.body = html;
   });
 
+  router.get('/:playlistID', async (ctx) => {
+    const templatePath = path.join(__dirname, 'templates', 'index.ejs');
+    const template = await readFile(templatePath, 'utf-8');
+    const html = ejs.render(template);
+    ctx.body = html;
+  });
+
   router.get('/youtube/:id', async (ctx) => {
     try {
       const info = await getVideoInfo(ctx.params.id);
@@ -44,7 +51,6 @@ const server = (connection: Connection, quiet: boolean) => {
       const playlist =
         await connection.getRepository(Playlist).findOne({ shortcode: ctx.params.id });
       
-      console.log(playlist);
       ctx.body = playlist;
     } catch (err) {
       ctx.status = 500;
