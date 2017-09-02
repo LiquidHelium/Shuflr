@@ -16,7 +16,9 @@
       "rootDir": "src",
       "noImplicitThis": true,
       "noImplicitAny": true,
-      "strictNullChecks": true
+      "strictNullChecks": true,
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true
     },
     "include": [
       "src"

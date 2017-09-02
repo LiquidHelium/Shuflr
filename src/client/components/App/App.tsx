@@ -4,7 +4,8 @@ import { Provider } from 'react-redux';
 import reducer from '../../reducers';
 import saga from '../../sagas';
 import createSagaMiddleware from 'redux-saga';
-import Page from '../Page';
+import PlaylistPage from '../PlaylistPage';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 const style = require('./style.scss');
 
@@ -19,7 +20,16 @@ class App extends React.Component<any, any> {
   render() {
     return (
       <Provider store={store}>
-        <Page />
+        <Router>
+          <div>
+            <Route path="/" exact render={() => (
+              <div>Home</div>
+            )} />
+            <Route path="/:playlistID" render={({ match }) => {
+              return <PlaylistPage id={match.params.playlistID} />;
+            }} />
+          </div>
+        </Router>
       </Provider>
     );
   }

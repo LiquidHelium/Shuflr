@@ -1,35 +1,44 @@
-import { all, take, call } from 'redux-saga/effects';
+import { watch } from 'fs';
+import { all, take, call, put, select } from 'redux-saga/effects';
+import { ActionKeys, setPlaylist, setVideo } from '../actions';
+import { getPlaylist } from '../api/playlist';
+import { getVideoInfo } from '../api/youtube';
+import { StoreState } from '../reducers';
 
+export function getRandomVideo(videos: YoutubeVideoInfo[], currentVideoID?: string) {
+  const filteredVideos = !currentVideoID
+    ? videos
+    : videos.filter(video => video.id !== currentVideoID);
 
-export function* playerActions(player: any, action: any): any {
-  switch (action.type) {
-    case 'START_PLAYER':
-      return player.playVideo();
-    case 'SET_VIDEO':
-      return player.loadVideoById(action.payload.id, 0, 'large');
-    default:
-      return;
-
-  }
+  const index = Math.floor(Math.random() * videos.length);
+  return  videos[index];
 }
 
-
-export function* setupPlayer() {
+export function* loadPlaylist() {
   while (true) {
-    const player = (yield take('SETUP_PLAYER')).payload.player;
-    while (true) {
-      const action = yield take();
-      if (action.type === 'TEARDOWN_PLAYER') {
-        break;
-      }
-      yield call(playerActions, player, action);
-    }
+    const playlistID = (yield take(ActionKeys.LOAD_PLAYLIST)).payload.id;
+    const playlist = yield call(getPlaylist, playlistID);
+    const videos = yield playlist.videos.map(getVideoInfo);
+    yield put(setPlaylist(playlistID, videos));
+
+    const randomVideo = yield call(getRandomVideo, playlist.videos);
+    yield put(setVideo(randomVideo));
   }
 }
-  
+
+export function* loadNextVideo() {
+  while (true) {
+    yield take(ActionKeys.LOAD_NEXT_VIDEO);
+    const videos = yield select((state: StoreState) => state.playlist.videos);
+    const currentVideo = yield select((state: StoreState) => state.player.videoID);
+    const randomVideo = yield call(getRandomVideo, videos, currentVideo);
+    yield put(setVideo(randomVideo.id));
+  }
+}
 
 export default function* () {
   yield all([
-    setupPlayer(),
+    loadPlaylist(),
+    loadNextVideo(),
   ]);
 }

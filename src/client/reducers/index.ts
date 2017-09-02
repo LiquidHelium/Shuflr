@@ -1,15 +1,15 @@
 import { combineReducers } from 'redux';
 
-import videoReducer, { VideosReducerState } from './videos';
+import playlistReducer, { PlaylistReducerState } from './playlist';
 import playerReducer, { PlayerReducerState } from './player';
 
 export interface StoreState {
-  videos: VideosReducerState;
+  playlist: PlaylistReducerState;
   player: PlayerReducerState;
 }
 
 export default combineReducers({
-  videos: videoReducer,
+  playlist: playlistReducer,
   player: playerReducer,
 });
 

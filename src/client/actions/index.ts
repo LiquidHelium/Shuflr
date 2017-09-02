@@ -1,3 +1,3 @@
 export * from './types';
-export * from './videos';
+export * from './playlist';
 export * from './player';
