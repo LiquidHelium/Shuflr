@@ -46,7 +46,7 @@
   "devDependencies": {
     "@types/bluebird": "^3.5.8",
     "@types/ejs": "^2.3.33",
-    "@types/enzyme": "^2.8.6",
+    "@types/enzyme": "^3.1.0",
     "@types/jest": "^20.0.7",
     "@types/koa": "^2.0.39",
     "@types/koa-mount": "^2.0.18",
