@@ -1,8 +1,4 @@
 {
-    "filesGlob": [
-        "../typings/**/*.*.ts",
-        "**/*.{ts}"
-    ],
     "compilerOptions": {
       "outDir": "build",
       "allowSyntheticDefaultImports": true,      
@@ -22,5 +18,10 @@
     },
     "include": [
       "src"
+    ],
+    "exclude": [
+      "node_modules",
+      "./build",
+      "global.d.ts"
     ]
   }

@@ -78,7 +78,7 @@ export default async (quiet: boolean) => {
       type: 'postgres',
       url: process.env.DATABASE_URL,
       entities: [Playlist],
-      autoSchemaSync: true,
+      synchronize: true,
       extra: {
         ssl: true,
       },
