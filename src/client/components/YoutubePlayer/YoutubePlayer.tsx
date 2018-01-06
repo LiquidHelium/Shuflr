@@ -14,8 +14,8 @@ export interface PlayerProps {
 }
 
 class YoutubePlayer extends React.Component<PlayerProps, any> {
-  constructor() {
-    super();
+  constructor(props: PlayerProps) {
+    super(props);
     this.state = { player: null };
   }
   
