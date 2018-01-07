@@ -1,9 +1,10 @@
 import { watch } from 'fs';
 import { all, take, call, put, select } from 'redux-saga/effects';
 import { ActionKeys, setPlaylist, setVideo, addVideo } from '../actions';
-import { getPlaylist } from '../api/playlist';
+import { getPlaylist, uploadPlaylist } from '../api/playlist';
 import { getVideoInfo } from '../api/youtube';
 import { StoreState } from '../reducers';
+import history from '../components/App/History';
 
 export function getRandomVideo(videos: YoutubeVideoInfo[], currentVideoID?: string) {
   const filteredVideos = !currentVideoID
@@ -44,10 +45,25 @@ export function* loadVideo() {
   }
 }
 
+export function* savePlaylist() {
+  while (true) {
+    try {
+      yield take(ActionKeys.SAVE_PLAYLIST);
+      const videos: YoutubeVideoInfo[] = yield select((state: StoreState) => state.playlist.videos);
+      const videoIds = videos.map(video => video.id);
+      const shortcode = yield call(uploadPlaylist, videoIds);
+      yield call(x => history.push(x), `/${shortcode}`);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+}
+
 export default function* () {
   yield all([
     loadPlaylist(),
     loadNextVideo(),
     loadVideo(),
+    savePlaylist(),
   ]);
 }

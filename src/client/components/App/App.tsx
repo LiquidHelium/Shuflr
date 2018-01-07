@@ -5,7 +5,8 @@ import reducer from '../../reducers';
 import saga from '../../sagas';
 import createSagaMiddleware from 'redux-saga';
 import PlaylistPage from '../PlaylistPage';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
+import history from './History';
 
 const style = require('./style.scss');
 
@@ -20,7 +21,7 @@ class App extends React.Component<any, any> {
   render() {
     return (
       <Provider store={store}>
-        <Router>
+        <Router history={history}>
           <div>
             <Route path="/" exact render={() => (
               <div>Home</div>

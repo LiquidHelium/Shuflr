@@ -1,6 +1,7 @@
 import {
   ActionKeys,
   SetPlaylistAction,
+  SavePlaylistAction,
   LoadPlaylistAction,
   AddVideoAction,
   LoadVideoAction,
@@ -38,5 +39,11 @@ export const loadVideo = (id: string): LoadVideoAction => {
     payload: {
       id,
     },
+  };
+};
+
+export const savePlaylist = (): SavePlaylistAction => {
+  return {
+    type: ActionKeys.SAVE_PLAYLIST,
   };
 };
