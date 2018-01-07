@@ -1,6 +1,6 @@
 import { watch } from 'fs';
 import { all, take, call, put, select } from 'redux-saga/effects';
-import { ActionKeys, setPlaylist, setVideo } from '../actions';
+import { ActionKeys, setPlaylist, setVideo, addVideo } from '../actions';
 import { getPlaylist } from '../api/playlist';
 import { getVideoInfo } from '../api/youtube';
 import { StoreState } from '../reducers';
@@ -36,9 +36,18 @@ export function* loadNextVideo() {
   }
 }
 
+export function* loadVideo() {
+  while (true) {
+    const videoID = (yield take(ActionKeys.LOAD_VIDEO)).payload.id;
+    const video = yield call(getVideoInfo, videoID);
+    yield put(addVideo(video));
+  }
+}
+
 export default function* () {
   yield all([
     loadPlaylist(),
     loadNextVideo(),
+    loadVideo(),
   ]);
 }
