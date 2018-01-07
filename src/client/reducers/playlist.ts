@@ -13,6 +13,8 @@ export default (state: PlaylistReducerState = defaultState,
   switch (action.type) {
     case ActionKeys.SET_PLAYLIST: 
       return { id: action.payload.id, videos: action.payload.videos };
+    case ActionKeys.ADD_VIDEO: 
+      return { ...state, videos: R.append(action.payload.video, state.videos) };
     default:
       return state;
   }
