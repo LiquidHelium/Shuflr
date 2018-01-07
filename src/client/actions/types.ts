@@ -10,6 +10,7 @@ export enum ActionKeys {
     LOAD_NEXT_VIDEO = 'LOAD_NEXT_VIDEO',
     SETUP_PLAYER = 'SETUP_PLAYER',
     TEARDOWN_PLAYER = 'TEARDOWN_PLAYER',
+    SAVE_PLAYLIST = 'SAVE_PLAYLIST',
 }
 
 export interface OtherAction {
@@ -43,6 +44,10 @@ export interface SetPlaylistAction {
     id: string;
     videos: YoutubeVideoInfo[];
   };
+}
+
+export interface SavePlaylistAction {
+  type: ActionKeys.SAVE_PLAYLIST;
 }
 
 export interface SetVideoAction {

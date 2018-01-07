@@ -11,3 +11,8 @@ export const getPlaylist = async (id: string): Promise<PlaylistInfo> => {
   const videos = JSON.parse(val.data.videos);
   return { ...val.data, videos };
 };
+
+export const uploadPlaylist = async (videos: string[]): Promise<string> => {
+  const response = await axios.post(`/playlist`, { videos });
+  return response.data.shortcode;
+};

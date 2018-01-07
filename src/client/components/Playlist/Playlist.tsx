@@ -4,7 +4,7 @@ import AddVideoInput from '../AddVideoInput';
 import VideoInfo from '../VideoInfo';
 import { getVideoInfo } from '../../api/youtube';
 import { connect } from 'react-redux';
-import { setVideo, loadVideo } from '../../actions';
+import { setVideo, loadVideo, savePlaylist } from '../../actions';
 import { StoreState } from '../../reducers';
 
 const style = require('./style.scss');
@@ -22,6 +22,7 @@ export interface PlaylistProps {
   currentlyPlaying: string | null;
   setVideo(video: string): any;
   loadVideo(video: string): any;
+  savePlaylist(): any;
 }
 
 class Playlist extends React.Component<PlaylistProps, {}> {
@@ -47,6 +48,7 @@ class Playlist extends React.Component<PlaylistProps, {}> {
         <div className={style.sidebar}>
           {videoInfos}
           <AddVideoInput onSubmit={this.props.loadVideo} />
+          <button onClick={this.props.savePlaylist}>Save</button>
         </div>
         <div className={style.player}>
           <YoutubePlayer />
@@ -61,7 +63,7 @@ const connectPage = connect(
       videos: state.playlist.videos,
       currentlyPlaying: state.player.videoID,
     }),
-    { setVideo, loadVideo },
+    { setVideo, loadVideo, savePlaylist },
 );
 
 export default connectPage(Playlist);
