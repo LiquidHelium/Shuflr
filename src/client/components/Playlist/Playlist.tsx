@@ -42,21 +42,44 @@ class Playlist extends React.Component<PlaylistProps, {}> {
           onClick={() => this.props.setVideo(info.id)}
         />
       ));
+
+    if (this.props.videos.length ===  0 || this.props.currentlyPlaying === null) {
+      return (
+        <div className={style.loading}>
+          <i className="fas fa-spinner fa-spin" />
+        </div>
+      );
+    }
   
     return (
       <div className={style.base}>
-        <div className={style.sidebar}>
-          {videoInfos}
-          <AddVideoInput onSubmit={this.props.loadVideo} />
-          <button onClick={this.props.savePlaylist}>Save</button>
+        <div className={style.header}>
+          <h1>Shuflr</h1>
         </div>
-        <div className={style.player}>
-          <YoutubePlayer />
+        <div className={style.centeredContent}>
+          <div className={style.player}>
+            <YoutubePlayer />
+          </div>
+          <div className={style.titleContainer}>
+            <h1>{getCurrentlyPlayingName(this.props.videos, this.props.currentlyPlaying)}</h1>
+          </div>
+          <div className={style.addVideoContainer}>
+            <AddVideoInput onSubmit={this.props.loadVideo} />
+            <button onClick={this.props.savePlaylist}>Save</button>
+          </div>
+          <div className={style.videoList}>
+            {videoInfos}
+          </div>
         </div>
       </div>
     );
   }
 }
+
+const getCurrentlyPlayingName = (videos: YoutubeVideoInfo[], currentlyPlayingId: string) => {
+  const video = videos.find(v => v.id === currentlyPlayingId);
+  return video ? video.name : 'Loading...';
+};
 
 const connectPage = connect(
     (state: StoreState) => ({

@@ -10,12 +10,10 @@ interface VideoInfoProps {
 }
 
 const VideoInfo = ({ thumbnail, name, onClick, active }: VideoInfoProps) => (
-  <div className={`${style.info} ${active ? style.active : ''}`} onClick={onClick}>
-    <div className={style.imageWrapper}>
-      <div className={style.image} style={{ backgroundImage: `url(${thumbnail})` }} />
-    </div>
-    <div className={style.details}>
-      <h1>{name}</h1>
+  <div className={style.container}>
+    <div className={`${style.info} ${active ? style.active : ''}`} onClick={onClick}>
+      <div className={style.image} style={{ backgroundImage: `url(${thumbnail})` }}/>
+      <h3>{name}</h3>
     </div>
   </div>
 );

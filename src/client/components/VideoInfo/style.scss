@@ -1,51 +1,44 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:300|Scope+One');
-
 .info {
-  display: flex;
-  width: 350px;
-  background: #3B2F63;
-  padding: 10px;
-  margin: 0;
+  flex-grow: 0;
+  flex-shrink: 0;
+  background: #a7adba;
+  margin: 5px;
   cursor: pointer;
-  box-shadow:
-    inset 0px -1px 0px 0px hsla(254, 36%, 33%, 1),
-    inset 0px -2px 0px 0px hsla(254, 36%, 23%, 1);
+  height: 100%;
 }
+
+.container {
+  width: 25%;
+  flex-grow: 0;
+  flex-shrink: 0;
+  margin-bottom: 10px;
+
+  @media screen and (max-width: 700px) {
+    width: 50%;
+  }
+
+  @media screen and (max-width: 500px) {
+    width: 100%;
+  }
+}
+
 
 .active {
-  background: #2f254e;
+  background: #65737e;
+  color: white;
 }
 
-.imageWrapper {
-  flex: 0;
-  padding-right: 10px;
-}
-    
 .image {
+  width: 100%;
+  height: 110px;
   background-size: cover;
   background-position: center;
-  width: 100px;
-  height: 70px;
 }
-
-.details {
-  flex: 1;
-
-  h1 {
-    font-size: 0.9em;
-    margin: 0;
-    margin-top: 2px;
-    padding: 0;
-    color: white;
-    font-family: 'Scope One', serif;
-  }
-  
-  p {
-    color: white;
-    font-size: 0.75em;
-    margin: 0;
-    margin-top: 3px;
-    padding: 0;
-    font-family: 'Roboto', sans-serif;
-  }
+    
+.info h3 {
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+  font-size: 1em;
+  margin: 10px;
 }

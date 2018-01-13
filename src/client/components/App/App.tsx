@@ -22,7 +22,7 @@ class App extends React.Component<any, any> {
     return (
       <Provider store={store}>
         <Router history={history}>
-          <div>
+          <div className={style.container}>
             <Route path="/" exact render={() => (
               <div>Home</div>
             )} />
