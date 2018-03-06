@@ -67,7 +67,7 @@
     "@types/react-router-dom": "^4.0.7",
     "@types/react-youtube": "^7.4.0",
     "@types/supertest": "^2.0.2",
-    "copyfiles": "^1.2.0",
+    "copyfiles": "^2.0.0",
     "css-loader": "^0.28.5",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
